@@ -1,2 +1,2 @@
 # sobrecoisas
-Um blog sore coisas.
+Um blog sobre coisas.
