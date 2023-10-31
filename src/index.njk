@@ -1,6 +1,21 @@
 ---
-layout: layout.njk
-title: Sobre coisas
+layout: base.njk
+title: Sobre o que você quer ler hoje?
 ---
 
-Esta é a home!
+<section>
+  <h1 class="text-4xl mb-8 font-bold">{{title}}</h1>
+  <ul class="mb-8">
+  {% for post in collections.posts %}
+  <li>
+    <a href="{{ post.url }}" class="flex justify-between font-extralight hover:bg-gray-100 text-xl md:p-2 rounded-lg">
+      <p class="w-3/5 truncate">{{ post.data.title }}</p>
+      <time>{{ post.date.toLocaleDateString() }}</time>
+    </a>
+  </li>
+  {% endfor %}
+  </ul>
+  <a href="/sobre" class="block hover:underline font-light mb-10 text-right">
+    → Ver lista completa
+  </a>
+</section>

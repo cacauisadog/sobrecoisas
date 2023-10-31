@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  {% include "components/head.njk" %}
+  <body class="bg-white min-h-screen">
+    {% include "components/header.njk" %}
+    <main class="max-w-lg mx-auto overflow-hidden md:max-w-3xl p-4 md:px-0 md:py-16" role="main">
+      {{ content | safe }}
+    </main>
+    {% include "components/footer.njk" %}
+  </body>
+</html>
