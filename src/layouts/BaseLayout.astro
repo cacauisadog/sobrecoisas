@@ -1,0 +1,39 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Um blog sobre coisas' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-white text-gray-900 antialiased">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <header class="py-8">
+        <nav>
+          <a href="/" class="text-2xl font-bold hover:text-gray-600">sobrecoisas</a>
+        </nav>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer class="mt-16 py-8 text-center text-sm text-gray-500">
+        <p>&copy; {new Date().getFullYear()} sobrecoisas</p>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,1 +1,14 @@
 @import "tailwindcss";
+@plugin '@tailwindcss/typography';
+
+@layer utilities {
+  /* Optimize reading experience */
+  article {
+    line-height: 1.75;
+  }
+
+  /* Improve link accessibility */
+  a {
+    transition: color 0.2s ease-in-out;
+  }
+}
