@@ -108,7 +108,3 @@ Will implement/choose [approach] because:
 3. Staging deployment
 4. Production deployment
 5. Monitoring period
-
-## References
-- all files inside the `@context` directory
-- External documentation on https://docs.astro.build/en/getting-started/
