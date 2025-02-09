@@ -198,3 +198,26 @@ src/
 2. Implement accessibility features
 3. Optimize performance
 4. Add SEO elements
+
+## Design System Decisions
+
+### February 9, 2025 13:11:55 GMT-3
+
+After careful consideration of our project's needs and goals, we've decided to keep our styling approach simple and maintainable by:
+
+1. **Using Tailwind's Default Design System**:
+   - Leveraging Tailwind's well-thought-out default values
+   - No custom theme variables or unnecessary abstractions
+   - Direct use of utility classes for predictability
+
+2. **Rationale**:
+   - Our minimalist blog doesn't require custom branding or complex design tokens
+   - Tailwind's utility classes are already semantic and well-documented
+   - Adding theme variables would be premature optimization
+   - Simpler codebase is easier to maintain and understand
+   - Changes will be easier to implement on a simpler foundation
+
+3. **Future Considerations**:
+   - Custom theming can be added later if specific needs arise
+   - Focus remains on content and functionality
+   - Maintaining consistency through direct utility class usage
