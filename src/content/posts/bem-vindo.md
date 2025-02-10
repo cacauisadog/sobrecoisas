@@ -2,7 +2,8 @@
 title: "Bem-vindo ao sobrecoisas"
 description: "Uma breve introdução sobre o que você encontrará por aqui"
 pubDate: 2025-02-08
-tags: ["geral"]
+tags: ["blog", "boas-vindas"]
+draft: false
 ---
 
 Olá! Este é o primeiro post do sobrecoisas, um espaço dedicado a compartilhar reflexões e ideias sobre diversos temas do cotidiano. Aqui, você encontrará textos que buscam explorar assuntos comuns sob diferentes perspectivas.
