@@ -18,15 +18,19 @@ const { title, description, pubDate, tags } = post.data;
         {pubDate.toLocaleDateString('pt-BR', { dateStyle: 'long' })}
       </time>
       {tags && tags.length > 0 && (
-        <div class="mt-4 flex flex-wrap justify-center gap-2">
-          {tags.map((tag) => (
-            <a
-              href={`/tag/${tag}`}
-              class="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700 hover:bg-gray-200"
-            >
-              {tag}
-            </a>
-          ))}
+        <div class="mt-4" aria-label="Tags do post">
+          <h2 class="sr-only">Tags</h2>
+          <div class="flex flex-wrap justify-center gap-2">
+            {tags.map((tag) => (
+              <a
+                href={`/tag/${tag}`}
+                class="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-900 hover:bg-gray-200 hover:text-gray-600"
+                aria-label={`Ver posts com a tag ${tag}`}
+              >
+                {tag}
+              </a>
+            ))}
+          </div>
         </div>
       )}
     </header>
