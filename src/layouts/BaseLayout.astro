@@ -1,17 +1,14 @@
 ---
 import "../styles/global.css";
+import SiteHeader from "../components/site/SiteHeader.astro";
 
 interface Props {
   title: string;
-  description?: string;
+  description: string;
   isHomePage?: boolean;
 }
 
-const {
-  title,
-  description = "Um blog sobre coisas",
-  isHomePage = false,
-} = Astro.props;
+const { title, description, isHomePage = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -26,7 +23,6 @@ const {
     <!-- OpenGraph Tags -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content={isHomePage ? "website" : "article"} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
@@ -39,41 +35,14 @@ const {
     <!-- Skip to content link -->
     <a
       href="#main-content"
-      title="Pular para o conteúdo"
       class="sr-only focus:not-sr-only focus:absolute focus:p-4"
+      aria-label="Pular para o conteúdo"
     >
       Pular para o conteúdo
     </a>
 
     <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-      <header class="py-8">
-        <nav aria-label="Navegação principal">
-          {
-            isHomePage ? (
-              <h1>
-                <a
-                  href="/"
-                  class="text-2xl font-bold hover:text-gray-600"
-                  aria-label="Ir para página inicial"
-                  title="Ir para página inicial"
-                >
-                  sobrecoisas
-                </a>
-              </h1>
-            ) : (
-              <a
-                href="/"
-                class="text-2xl font-bold hover:text-gray-600"
-                aria-label="Ir para página inicial"
-                title="Ir para página inicial"
-              >
-                sobrecoisas
-              </a>
-            )
-          }
-        </nav>
-      </header>
-
+      <SiteHeader isHomePage={isHomePage} />
       <main id="main-content">
         <slot />
       </main>

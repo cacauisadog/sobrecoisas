@@ -1,0 +1,43 @@
+---
+interface Props {
+  isHomePage?: boolean;
+}
+
+const { isHomePage = false } = Astro.props;
+---
+
+<header class="py-8">
+  <nav
+    aria-label="Navegação principal"
+    class="mb-8 flex items-center justify-between"
+  >
+    {
+      isHomePage ? (
+        <h1>
+          <a
+            href="/"
+            class="text-2xl font-bold hover:text-gray-600"
+            aria-label="Ir para página inicial"
+          >
+            sobrecoisas
+          </a>
+        </h1>
+      ) : (
+        <a
+          href="/"
+          class="text-2xl font-bold hover:text-gray-600"
+          aria-label="Ir para página inicial"
+        >
+          sobrecoisas
+        </a>
+      )
+    }
+    <a
+      href="/tags"
+      class="text-gray-600 hover:text-gray-900"
+      aria-label="Ver todas as tags"
+    >
+      Tags
+    </a>
+  </nav>
+</header>

@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import TagList from "../../components/tag/TagList.astro";
+
+// Get all published posts
+const posts = await getCollection("posts", ({ data }) => {
+  return import.meta.env.DEV || !data.draft;
+});
+
+// Get tag counts
+const tagCounts = posts.reduce((acc, post) => {
+  post.data.tags.forEach((tag) => {
+    acc.set(tag, (acc.get(tag) || 0) + 1);
+  });
+  return acc;
+}, new Map<string, number>());
+
+// Convert to array and sort by count
+const sortedTags = Array.from(tagCounts.entries()).sort((a, b) => b[1] - a[1]);
+
+const title = "Tags";
+const description = "Navegue pelos posts do sobrecoisas por tag";
+---
+
+<BaseLayout title={title} description={description}>
+  <header class="mb-8">
+    <h1 class="text-3xl font-bold text-center">Tags</h1>
+    <p class="mt-2 text-center text-gray-500">
+      {sortedTags.length}
+      {sortedTags.length === 1 ? "tag" : "tags"} no total
+    </p>
+  </header>
+
+  <div class="mb-8">
+    <label for="tagFilter" class="sr-only">Filtrar tags</label>
+    <input
+      type="text"
+      id="tagFilter"
+      placeholder="Filtrar tags..."
+      class="w-full px-4 py-2 border border-gray-200 rounded-lg"
+    />
+  </div>
+
+  <TagList tags={sortedTags} />
+</BaseLayout>
