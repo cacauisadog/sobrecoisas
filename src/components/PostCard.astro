@@ -1,24 +1,27 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
-  post: CollectionEntry<'posts'>;
+  post: CollectionEntry<"posts">;
 }
 
 const { post } = Astro.props;
 const { title, description, pubDate } = post.data;
 ---
 
-<article class="group relative flex flex-col space-y-2">
-  <h2 class="text-xl font-semibold group-hover:text-gray-600">
-    <a href={`/${post.slug}`}>{title}</a>
-  </h2>
-  <time datetime={pubDate.toISOString()} class="text-sm text-gray-500">
-    {pubDate.toLocaleDateString('pt-BR', { dateStyle: 'long' })}
-  </time>
-  {description && (
-    <p class="text-gray-600">
-      {description}
-    </p>
-  )}
+<article class="group relative">
+  <a
+    href={`/${post.slug}`}
+    class="block rounded-lg border border-gray-100 bg-white p-6 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-gray-200"
+  >
+    <div class="flex flex-col space-y-2">
+      <h2 class="text-xl font-semibold transition group-hover:text-gray-600">
+        {title}
+      </h2>
+      <time datetime={pubDate.toISOString()} class="text-sm text-gray-500">
+        {pubDate.toLocaleDateString("pt-BR", { dateStyle: "long" })}
+      </time>
+      {description && <p class="text-gray-600">{description}</p>}
+    </div>
+  </a>
 </article>
