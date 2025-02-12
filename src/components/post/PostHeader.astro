@@ -1,0 +1,39 @@
+---
+interface Props {
+  title: string;
+  pubDate: Date;
+  tags: string[];
+}
+
+const { title, pubDate, tags } = Astro.props;
+---
+
+<header class="mb-8 text-center">
+  <h1 class="mb-2 text-3xl font-bold">{title}</h1>
+
+  <time datetime={pubDate.toISOString()} class="text-sm text-gray-500">
+    {pubDate.toLocaleDateString("pt-BR", { dateStyle: "long" })}
+  </time>
+
+  {
+    tags.length > 0 && (
+      <div class="mt-4" aria-label="Tags do post">
+        <h2 class="sr-only">Tags</h2>
+        <ul class="flex flex-wrap justify-center gap-2" role="list">
+          {tags.map((tag) => (
+            <li>
+              <a
+                href={`/tag/${tag}`}
+                class="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-900 hover:bg-gray-200 hover:text-gray-600"
+                aria-label={`Ver posts com a tag ${tag}`}
+                title={`Ver todos os posts com a tag "${tag}"`}
+              >
+                {tag}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
+</header>
