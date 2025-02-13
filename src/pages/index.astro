@@ -12,7 +12,11 @@ const sortedPosts = posts.sort(
 );
 ---
 
-<BaseLayout title="sobrecoisas" isHomePage={true}>
+<BaseLayout
+  title="sobrecoisas"
+  description="Um blog sobre coisas"
+  isHomePage={true}
+>
   <section class="space-y-8">
     {sortedPosts.map((post) => <PostCard post={post} />)}
   </section>
