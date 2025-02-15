@@ -1,13 +1,13 @@
-import { getCollection } from 'astro:content';
-import type { Post } from '../types/post';
+import { getCollection } from "astro:content";
+import type { Post } from "../types/post";
 
 /**
  * Get all published posts, sorted by date
  */
 export async function getAllPosts(): Promise<Post[]> {
-  const posts = await getCollection('posts');
+  const posts = await getCollection("posts");
   return posts
-    .filter(post => !post.data.draft)
+    .filter((post) => !post.data.draft)
     .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 }
 
@@ -16,7 +16,7 @@ export async function getAllPosts(): Promise<Post[]> {
  */
 export async function getAllTags(): Promise<string[]> {
   const posts = await getAllPosts();
-  const tags = new Set(posts.flatMap(post => post.data.tags));
+  const tags = new Set(posts.flatMap((post) => post.data.tags));
   return Array.from(tags).sort();
 }
 
@@ -25,5 +25,5 @@ export async function getAllTags(): Promise<string[]> {
  */
 export async function getPostsByTag(tag: string): Promise<Post[]> {
   const posts = await getAllPosts();
-  return posts.filter(post => post.data.tags.includes(tag));
+  return posts.filter((post) => post.data.tags.includes(tag));
 }
