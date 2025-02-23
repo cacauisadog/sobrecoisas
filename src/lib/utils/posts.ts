@@ -1,5 +1,8 @@
 import { getCollection } from "astro:content";
-import type { Post } from "../types/post";
+import { fromMarkdown } from "mdast-util-from-markdown";
+import { toString } from "mdast-util-to-string";
+import calculateReadingTime from "reading-time";
+import type { Post, ReadingTime } from "../types/post";
 
 /**
  * Get all published posts, sorted by date
@@ -27,3 +30,22 @@ export async function getPostsByTag(tag: string): Promise<Post[]> {
   const posts = await getAllPosts();
   return posts.filter((post) => post.data.tags.includes(tag));
 }
+
+/**
+ * Get reading time from Markdown post body.
+ * @returns A string with the reading time, or undefined if the text is empty or null.
+ */
+export const getReadingTime = (
+  text: string | undefined
+): ReadingTime | undefined => {
+  if (!text || !text.length) return undefined;
+  try {
+    const { minutes } = calculateReadingTime(toString(fromMarkdown(text)));
+    if (minutes && minutes > 0) {
+      return `${Math.ceil(minutes)} min de leitura` as const;
+    }
+    return undefined;
+  } catch (e) {
+    return undefined;
+  }
+};

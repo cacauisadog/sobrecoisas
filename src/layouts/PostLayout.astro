@@ -3,6 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 import type { CollectionEntry } from "astro:content";
 import PostHeader from "../components/post/PostHeader.astro";
 import PostFooter from "../components/post/PostFooter.astro";
+import { getReadingTime } from "../lib/utils/posts";
 
 interface Props {
   post: CollectionEntry<"posts">;
@@ -10,11 +11,18 @@ interface Props {
 
 const { post } = Astro.props;
 const { title, description, pubDate, tags } = post.data;
+
+const readingTime = getReadingTime(post.body);
 ---
 
 <BaseLayout title={title} description={description}>
   <article>
-    <PostHeader title={title} pubDate={pubDate} tags={tags} />
+    <PostHeader
+      title={title}
+      pubDate={pubDate}
+      tags={tags}
+      readingTime={readingTime}
+    />
 
     <div class="prose prose-lg max-w-none mt-12">
       <slot />

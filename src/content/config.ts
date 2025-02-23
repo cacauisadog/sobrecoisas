@@ -45,5 +45,5 @@ const posts = defineCollection({
 
 // Export the collections
 export const collections = {
-  posts: posts,
+  posts,
 };

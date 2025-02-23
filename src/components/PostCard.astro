@@ -1,12 +1,16 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import type { PostFrontmatter } from "../lib/types/post";
+import { getReadingTime } from "../lib/utils/posts";
 
 interface Props {
   post: CollectionEntry<"posts">;
 }
 
 const { post } = Astro.props;
-const { title, description, pubDate } = post.data;
+const { title, description, pubDate }: PostFrontmatter = post.data;
+
+const readingTime = getReadingTime(post.body);
 ---
 
 <article class="group relative">
@@ -18,9 +22,15 @@ const { title, description, pubDate } = post.data;
       <h2 class="text-xl font-semibold transition group-hover:text-gray-600">
         {title}
       </h2>
-      <time datetime={pubDate.toISOString()} class="text-sm text-gray-500">
-        {pubDate.toLocaleDateString("pt-BR", { dateStyle: "long" })}
-      </time>
+      <div class="flex items-center">
+        <time datetime={pubDate.toISOString()} class="text-sm text-gray-500">
+          {pubDate.toLocaleDateString("pt-BR", { dateStyle: "long" })}
+        </time>
+        {readingTime && (
+          <span class="mx-2">·</span>
+          <p class="text-sm text-gray-500">{readingTime}</p>
+        )}
+      </div>
       {description && <p class="text-gray-600">{description}</p>}
     </div>
   </a>
